@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get(DJANGO_SECRET_KEY', 'chave-super-secreta-para-dev')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['seu-projeto.onrender.com', 'www.seudominio.com', 'seudominio.com']
+ALLOWED_HOSTS = ['yamaru-store.onrender.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
