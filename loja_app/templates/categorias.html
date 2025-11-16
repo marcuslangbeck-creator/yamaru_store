@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Categorias - Yamaru Store{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center mb-4" style="font-family: Constantia;">
+    Categorias
+</h1>
+
+<div class="container">
+    <div class="row g-4">
+
+        {% for categoria in categorias %}
+        <div class="col-md-4">
+
+            <a href="{% url 'categoria' categoria.id %}" class="text-decoration-none">
+
+                <div style="
+                    background-color: #6A0F1C;        /* Cor da navbar */
+                    border: 3px solid white;         /* Borda branca grossa */
+                    padding: 25px;
+                    border-radius: 12px;
+                    text-align: center;
+                    font-family: Constantia;
+                    color: white;
+                    font-size: 22px;
+                    transition: 0.3s;
+                "
+                onmouseover="this.style.backgroundColor='#8B2E30'"
+                onmouseout="this.style.backgroundColor='#6A0F1C'">
+
+                    {{ categoria.nome }}
+
+                </div>
+
+            </a>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

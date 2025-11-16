@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus pedidos - Yamaru Store{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center mb-4" style="font-family: Constantia;">
+    Meus pedidos
+</h1>
+
+{% if pedidos %}
+    <div class="container">
+        <div class="row g-4">
+            {% for pedido in pedidos %}
+            <div class="col-md-6">
+                <div style="
+                    background-color: #6A0F1C;
+                    border: 3px solid white;
+                    border-radius: 12px;
+                    padding: 20px;
+                    color: white;
+                    font-family: Constantia;
+                ">
+                    <h4>Pedido #{{ pedido.id }}</h4>
+                    <p>Nome: {{ pedido.nome }}</p>
+                    <p>Endereço: {{ pedido.endereco }}</p>
+                    <p>Telefone: {{ pedido.telefone }}</p>
+                    <p>Pagamento: {{ pedido.pagamento }}</p>
+                    <p>Total: <strong>R$ {{ pedido.total }}</strong></p>
+                    <p>Data: {{ pedido.criado_em }}</p>
+
+                    <hr>
+                    <p>Itens:</p>
+                    <ul>
+                        {% for item in pedido.itens.all %}
+                        <li>{{ item.nome_produto }} — {{ item.quantidade }}x (R$ {{ item.subtotal }})</li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <p class="text-center" style="font-family: Constantia;">
+        Você ainda não tem pedidos.
+    </p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Pedido finalizado - Yamaru Store{% endblock %}
+
+{% block content %}
+<h1 class="mb-3" style="font-family: Constantia;">
+    Pedido #{{ pedido.id }} recebido!
+</h1>
+
+<p>Obrigado, {{ pedido.nome }}. Abaixo está o resumo do seu pedido.</p>
+
+<h4 class="mt-4">Itens</h4>
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th class="text-center">Qtd</th>
+            <th class="text-end">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in itens %}
+        <tr>
+            <td>{{ item.nome_produto }}</td>
+            <td class="text-center">{{ item.quantidade }}</td>
+            <td class="text-end">R$ {{ item.subtotal }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h4 class="mt-3">Total: R$ {{ pedido.total }}</h4>
+
+<h4 class="mt-4">Forma de pagamento: {{ pedido.pagamento }}</h4>
+
+{% if pedido.pagamento == 'PIX' %}
+    <div class="mt-3">
+        <p>Use a chave PIX abaixo (copia e cola):</p>
+        <p class="fw-bold">{{ pix_chave }}</p>
+        <p>Depois de pagar, envie o comprovante para o nosso WhatsApp.</p>
+    </div>
+{% else %}
+    <p class="mt-3">
+        Pagamento em cartão de crédito: entraremos em contato com você para enviar o link de pagamento.
+    </p>
+{% endif %}
+
+<a href="{% url 'home' %}" class="btn btn-secondary mt-4">Voltar para a loja</a>
+{% endblock %}

@@ -1,0 +1,92 @@
+/* ✨ PALETA OFICIAL DA SUA LOJA ✨ */
+:root {
+    --bordo: #6A0F1C;
+    --marsala: #8B2E30;
+    --borgonha: #4C0E0F;
+    --laranja-dourado: #E69A38;
+    --areia: #F5E7D3;
+}
+
+/* NAVBAR */
+.navbar-main {
+    background-color: var(--bordo);
+    border-bottom: 3px solid var(--laranja-dourado);
+}
+
+.navbar-main .navbar-brand,
+.navbar-main .nav-link {
+    color: var(--areia) !important;
+    font-weight: 600;
+}
+
+.navbar-main .nav-link:hover {
+    color: var(--laranja-dourado) !important;
+}
+
+/* BOTÕES */
+.btn-primary {
+    background-color: var(--marsala);
+    border-color: var(--marsala);
+}
+
+.btn-primary:hover {
+    background-color: var(--borgonha);
+    border-color: var(--borgonha);
+}
+
+/* PREÇO */
+.price {
+    color: var(--laranja-dourado);
+    font-weight: bold;
+}
+
+/* CARDS */
+.card {
+    border: 1px solid var(--areia);
+}
+
+.card-title {
+    color: var(--bordo);
+}
+
+.card-body strong {
+    color: var(--laranja-dourado);
+}
+/* ==== LOGO DA NAVBAR ==== */
+.logo-navbar {
+    height: 32px;        /* tamanho pequeno */
+    width: 32px;         /* proporcional */
+    border-radius: 50%;  /* deixa redonda */
+    object-fit: cover;   /* corta certinho */
+    margin-right: 8px;
+}
+/* Fonte premium na navbar */
+.navbar-main,
+.navbar-main .nav-link,
+.navbar-main .navbar-brand {
+    font-family: "Constantia", serif !important;
+}
+.navbar-main {
+    background-color: #6A0F1C; /* bordô */
+    border-bottom: 3px solid #E69A38; /* dourado queimado */
+}
+.size-option {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.size-option:hover {
+    background-color: #222;
+    color: white;
+}
+
+.size-option.selected {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Yamaru Store - Início{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4" style="font-family: Constantia;">
+    Bem-vindo(a) à Yamaru Store
+</h1>
+
+<div class="row">
+    {% for p in produtos %}
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            {% if p.imagem %}
+            <img src="{{ p.imagem.url }}" class="card-img-top">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">{{ p.nome }}</h5>
+                <p class="card-text"><strong>R$ {{ p.preco }}</strong></p>
+                <a href="/produto/{{ p.id }}/" class="btn btn-primary w-100">
+                    Ver detalhes
+                </a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-center">Nenhum produto cadastrado ainda.</p>
+    {% endfor %}
+</div>
+{% endblock %}

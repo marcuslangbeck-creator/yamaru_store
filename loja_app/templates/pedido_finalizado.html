@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Pedido finalizado - Yamaru Store{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center mt-4" style="font-family: Constantia;">
+    Obrigado pelo seu pedido! 🎉
+</h1>
+
+<div class="container mt-4">
+    <div style="
+        background-color:#6A0F1C;
+        border:3px solid white;
+        border-radius:12px;
+        padding:20px;
+        color:white;
+        font-family:Constantia;
+    ">
+        <p>Número do pedido: <strong>#{{ pedido.id }}</strong></p>
+        <p>Nome: {{ pedido.nome }}</p>
+        <p>Total: <strong>R$ {{ pedido.total }}</strong></p>
+
+        <hr>
+        <p>Itens:</p>
+        <ul>
+            {% for item in pedido.itens.all %}
+            <li>{{ item.nome_produto }} — {{ item.quantidade }}x (R$ {{ item.subtotal }})</li>
+            {% endfor %}
+        </ul>
+
+        <div class="mt-3">
+            <a href="{% url 'home' %}" class="btn btn-light">Voltar à loja</a>
+            <a href="{% url 'meus_pedidos' %}" class="btn btn-warning">Ver meus pedidos</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

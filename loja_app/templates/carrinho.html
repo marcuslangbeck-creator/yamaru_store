@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Carrinho - Yamaru Store{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center mb-4" style="font-family: Constantia;">
+    Carrinho de Compras
+</h1>
+
+{% if itens %}
+
+    <div class="container">
+        <div class="row g-4">
+
+            {% for item in itens %}
+            <div class="col-md-6">
+
+                <div style="
+                    background-color: #6A0F1C;      /* cor da navbar */
+                    border: 3px solid white;       /* borda branca grossa */
+                    border-radius: 12px;
+                    padding: 20px;
+                    color: white;
+                    font-family: Constantia;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                ">
+                    <h4 style="margin-bottom: 10px;">
+                        {{ item.nome }}
+                    </h4>
+
+                    <p style="margin: 0;">
+                        Preço unitário:
+                        <strong>R$ {{ item.preco }}</strong>
+                    </p>
+
+                    <div class="d-flex align-items-center mt-2 mb-2">
+                        <span class="me-2">Quantidade:</span>
+
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a href="{% url 'diminuir_qtd' item.id %}"
+                               class="btn btn-outline-light">-</a>
+
+                            <span class="px-3"
+                                  style="background-color: rgba(0,0,0,0.2); border-radius: 8px;">
+                                {{ item.quantidade }}
+                            </span>
+
+                            <a href="{% url 'aumentar_qtd' item.id %}"
+                               class="btn btn-outline-light">+</a>
+                        </div>
+                    </div>
+
+                    <p style="margin: 0;">
+                        Subtotal:
+                        <strong>R$ {{ item.subtotal }}</strong>
+                    </p>
+
+                    <div class="mt-3 text-end">
+                        <a href="{% url 'remover_do_carrinho' item.id %}"
+                           class="btn btn-sm btn-outline-light">
+                            Remover
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <!-- RESUMO DO TOTAL -->
+        <div class="row mt-4">
+            <div class="col-md-6 offset-md-3">
+                <div style="
+                    background-color: #8B2E30;
+                    border: 3px solid white;
+                    border-radius: 12px;
+                    padding: 20px;
+                    color: white;
+                    font-family: Constantia;
+                    text-align: center;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                ">
+                    <h4>Total do Carrinho</h4>
+                    <p style="font-size: 22px; margin: 10px 0;">
+                        <strong>R$ {{ total }}</strong>
+                    </p>
+
+                    <!-- BOTÃO FINALIZAR COMPRA -->
+                    <a href="{% url 'checkout' %}"
+                       class="btn btn-warning w-100 mt-2"
+                       style="font-family: Constantia;">
+                        Finalizar compra
+                    </a>
+
+                    <!-- BOTÃO CONTINUAR COMPRANDO -->
+                    <a href="{% url 'home' %}"
+                       class="btn btn-light w-100 mt-2"
+                       style="font-family: Constantia;">
+                        Continuar comprando
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+
+    <p class="text-center" style="font-family: Constantia; font-size: 20px;">
+        Seu carrinho está vazio.
+    </p>
+    <div class="text-center mt-3">
+        <a href="{% url 'home' %}" class="btn btn-primary">Voltar à loja</a>
+    </div>
+
+{% endif %}
+
+{% endblock %}
+

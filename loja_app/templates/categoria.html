@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ categoria.nome }} - Minha Loja{% endblock %}
+
+{% block content %}
+<h1>{{ categoria.nome }}</h1>
+
+<div class="row mt-3">
+    {% if produtos %}
+        {% for p in produtos %}
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+                {% if p.imagem %}
+                <img src="{{ p.imagem.url }}" class="card-img-top">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ p.nome }}</h5>
+                    <p class="card-text"><strong>R$ {{ p.preco }}</strong></p>
+                    <a href="{% url 'produto' p.id %}" class="btn btn-primary w-100">Ver detalhes</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Não há produtos nesta categoria ainda.</p>
+    {% endif %}
+</div>
+
+<a href="{% url 'categorias' %}" class="btn btn-secondary mt-3">Voltar para categorias</a>
+{% endblock %}
